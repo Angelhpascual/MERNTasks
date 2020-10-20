@@ -3,10 +3,10 @@ import Task from "./Task";
 
 const ListTasks = () => {
   const tasksProject = [
-    { name: "Elegir Plataforma", state: true },
-    { name: "Elegir Colores", state: false },
-    { name: "Elegir Plataforma de Pago", state: true },
-    { name: "Elegir Hosting", state: false },
+    { name: "Choose Platform", state: true },
+    { name: "Choos Colours", state: false },
+    { name: "Choose Payment Platform", state: true },
+    { name: "Choose Hosting", state: false },
   ];
 
   return (

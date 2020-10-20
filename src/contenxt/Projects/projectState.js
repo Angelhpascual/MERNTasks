@@ -12,9 +12,9 @@ import {
 
 const ProjectState = (props) => {
   const projectsArray = [
-    { id: 1, nameProject: "Tienda Virtual" },
+    { id: 1, nameProject: "Virtual Shop" },
     { id: 2, nameProject: "Intranet" },
-    { id: 3, nameProject: "Diseño de sitio web" },
+    { id: 3, nameProject: "Design website" },
     { id: 4, nameProject: "MERN" },
   ];
 
