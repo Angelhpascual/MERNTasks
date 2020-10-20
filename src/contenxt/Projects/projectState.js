@@ -3,7 +3,12 @@ import uuid from "uuid";
 
 import projectContext from "./projectContext";
 import projectReducer from "./projectReducer";
-import { ADD_PROJECT, FORM_PROJECT, GET_PROJECTS } from "../../types";
+import {
+  ADD_PROJECT,
+  FORM_PROJECT,
+  GET_PROJECTS,
+  VALIDATE_FORM,
+} from "../../types";
 
 const ProjectState = (props) => {
   const projectsArray = [
@@ -16,6 +21,7 @@ const ProjectState = (props) => {
   const initialState = {
     projectsArray: [],
     form: false,
+    errorform: false,
   };
 
   //Dispatch to launch actions
@@ -48,14 +54,23 @@ const ProjectState = (props) => {
     });
   };
 
+  //validate the project form
+  const showError = () => {
+    dispatch({
+      type: VALIDATE_FORM,
+    });
+  };
+
   return (
     <projectContext.Provider
       value={{
         projectsArray: state.projectsArray,
         form: state.form,
+        errorform: state.errorform,
         showForm,
         getProjects,
         addProject,
+        showError,
       }}
     >
       {props.children}
