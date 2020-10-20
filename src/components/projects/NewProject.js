@@ -1,10 +1,20 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
+import projectContext from "../../contenxt/Projects/projectContext";
 
 const NewProject = () => {
+  //Using the context created
+  const projectsContext = useContext(projectContext);
+
+  //Extracting the form from context
+  const { form, showForm, addProject } = projectsContext;
+
   //State for new projects: nameProject
   const [project, setProject] = useState({
     nameProject: "",
   });
+
+  //Extract the values from the state ( project)
+  const { nameProject } = project;
 
   //Onchange function
   const onChangeProject = (e) => {
@@ -18,38 +28,45 @@ const NewProject = () => {
   const handleSubmitNewProject = (e) => {
     e.preventDefault();
     //Validate the project
+    if (nameProject === "") {
+      return null;
+    }
 
     //Add to state
+    addProject(project);
 
     //Reboot the form
   };
 
-  //Extract the values from the state ( project)
-  const { nameProject } = project;
-
   return (
     <Fragment>
-      <button type="button" className="btn btn-block btn-primario">
+      <button
+        onClick={() => showForm()}
+        type="button"
+        className="btn btn-block btn-primario"
+      >
         New Project
       </button>
 
-      <form
-        className="formulario-nuevo-proyecto"
-        onSubmit={handleSubmitNewProject}
-      >
-        <input
-          type="text"
-          className="input-text"
-          placeholder="Project name"
-          name="nameProject"
-          onChange={onChangeProject}
-        />
-        <input
-          type="submit"
-          className="btn btn-primario btn-block"
-          value="Add Project"
-        />
-      </form>
+      {form ? (
+        <form
+          className="formulario-nuevo-proyecto"
+          onSubmit={handleSubmitNewProject}
+        >
+          <input
+            type="text"
+            className="input-text"
+            placeholder="Project name"
+            name="nameProject"
+            onChange={onChangeProject}
+          />
+          <input
+            type="submit"
+            className="btn btn-primario btn-block"
+            value="Add Project"
+          />
+        </form>
+      ) : null}
     </Fragment>
   );
 };
